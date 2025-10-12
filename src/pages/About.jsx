@@ -1,4 +1,5 @@
 import { FiUser, FiMapPin, FiMail, FiPhone, FiGithub, FiLinkedin } from "react-icons/fi";
+import { personalInfo } from "../data/information";
 
 export default function About() {
   return (
@@ -10,7 +11,7 @@ export default function About() {
             Giới thiệu về tôi
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Xin chào! Tôi là Nguyễn Sơn, một lập trình viên đam mê công nghệ và phát triển web.
+            {personalInfo.bio.short}
           </p>
         </div>
 
@@ -26,8 +27,8 @@ export default function About() {
             <div className="flex justify-center mb-6">
               <div className="relative">
                 <img
-                  src="/images/avatar.jpg"
-                  alt="Nguyễn Sơn"
+                  src={personalInfo.avatar}
+                  alt={personalInfo.name}
                   className="w-32 h-32 rounded-full object-cover border-4 border-cyan-100 shadow-lg"
                 />
                 <div className="absolute bottom-0 right-0 w-8 h-8 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">
@@ -37,47 +38,51 @@ export default function About() {
             </div>
 
             <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Nguyễn Sơn</h3>
-              <p className="text-cyan-600 font-medium">Full-Stack Developer</p>
-              <p className="text-gray-500 text-sm mt-1">3+ năm kinh nghiệm</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">{personalInfo.name}</h3>
+              <p className="text-cyan-600 font-medium">{personalInfo.title}</p>
+              <p className="text-gray-500 text-sm mt-1">{personalInfo.experience}</p>
             </div>
             
             <div className="space-y-4">
               <div className="flex items-center">
                 <FiMapPin className="w-5 h-5 text-gray-500 mr-3" />
-                <span className="text-gray-700">Hồ Chí Minh, Việt Nam</span>
+                <span className="text-gray-700">{personalInfo.contact.address}</span>
               </div>
               <div className="flex items-center">
                 <FiMail className="w-5 h-5 text-gray-500 mr-3" />
-                <span className="text-gray-700">nguyenson@email.com</span>
+                <span className="text-gray-700">{personalInfo.contact.email}</span>
               </div>
               <div className="flex items-center">
                 <FiPhone className="w-5 h-5 text-gray-500 mr-3" />
-                <span className="text-gray-700">+84 123 456 789</span>
+                <span className="text-gray-700">{personalInfo.contact.phone}</span>
               </div>
             </div>
 
             <div className="mt-6 pt-6 border-t border-gray-200">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Kết nối với tôi</h3>
               <div className="flex justify-center space-x-4">
-                <a 
-                  href="https://github.com/nguyenson" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-100 rounded-lg hover:bg-gray-800 hover:text-white transition-colors group"
-                  title="GitHub"
-                >
-                  <FiGithub className="w-5 h-5" />
-                </a>
-                <a 
-                  href="https://linkedin.com/in/nguyenson" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-100 rounded-lg hover:bg-blue-600 hover:text-white transition-colors group"
-                  title="LinkedIn"
-                >
-                  <FiLinkedin className="w-5 h-5" />
-                </a>
+                {personalInfo.social.github && (
+                  <a 
+                    href={personalInfo.social.github} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-100 rounded-lg hover:bg-gray-800 hover:text-white transition-colors group"
+                    title="GitHub"
+                  >
+                    <FiGithub className="w-5 h-5" />
+                  </a>
+                )}
+                {personalInfo.social.linkedin && (
+                  <a 
+                    href={personalInfo.social.linkedin} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-100 rounded-lg hover:bg-blue-600 hover:text-white transition-colors group"
+                    title="LinkedIn"
+                  >
+                    <FiLinkedin className="w-5 h-5" />
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -90,7 +95,7 @@ export default function About() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-3">Frontend Development</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3'].map((skill) => (
+                  {personalInfo.skills.frontend.map((skill) => (
                     <span 
                       key={skill}
                       className="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium"
@@ -104,7 +109,7 @@ export default function About() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-3">Backend Development</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'Express', 'MongoDB', 'MySQL', 'API Design'].map((skill) => (
+                  {personalInfo.skills.backend.map((skill) => (
                     <span 
                       key={skill}
                       className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
@@ -118,7 +123,7 @@ export default function About() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-3">Tools & Others</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['Git', 'Docker', 'AWS', 'Figma', 'Photoshop'].map((skill) => (
+                  {personalInfo.skills.tools.map((skill) => (
                     <span 
                       key={skill}
                       className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium"
@@ -136,21 +141,11 @@ export default function About() {
         <div className="mt-8 bg-white rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Về tôi</h2>
           <div className="prose prose-lg max-w-none text-gray-700">
-            <p className="mb-4">
-              Tôi là một lập trình viên full-stack với hơn 3 năm kinh nghiệm trong việc phát triển 
-              các ứng dụng web hiện đại. Tôi có đam mê mạnh mẽ với việc tạo ra những trải nghiệm 
-              người dùng tuyệt vời thông qua code sạch và thiết kế đẹp.
-            </p>
-            <p className="mb-4">
-              Chuyên môn của tôi tập trung vào React, Node.js và các công nghệ web hiện đại. 
-              Tôi luôn tìm kiếm cơ hội học hỏi và áp dụng những công nghệ mới để giải quyết 
-              các vấn đề phức tạp một cách sáng tạo.
-            </p>
-            <p>
-              Ngoài lập trình, tôi thích chia sẻ kiến thức thông qua blog cá nhân và tham gia 
-              vào các dự án open source. Mục tiêu của tôi là không ngừng phát triển kỹ năng 
-              và đóng góp tích cực cho cộng đồng lập trình viên.
-            </p>
+            {personalInfo.bio.long.map((paragraph, index) => (
+              <p key={index} className={index < personalInfo.bio.long.length - 1 ? "mb-4" : ""}>
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
       </div>

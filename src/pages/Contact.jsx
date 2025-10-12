@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiMail, FiPhone, FiMapPin, FiSend, FiUser, FiMessageSquare } from "react-icons/fi";
 import EnhancedMap from "../components/EnhancedMap";
+import { personalInfo } from "../data/information";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -64,7 +65,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-800">Email</p>
-                    <p className="text-gray-600">nguyenson@email.com</p>
+                    <p className="text-gray-600">{personalInfo.contact.email}</p>
                   </div>
                 </div>
 
@@ -74,7 +75,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-800">Điện thoại</p>
-                    <p className="text-gray-600">+84 123 456 789</p>
+                    <p className="text-gray-600">{personalInfo.contact.phone}</p>
                   </div>
                 </div>
 
@@ -84,7 +85,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-800">Địa chỉ</p>
-                    <p className="text-gray-600">Hồ Chí Minh, Việt Nam</p>
+                    <p className="text-gray-600">{personalInfo.contact.address}</p>
                   </div>
                 </div>
               </div>
@@ -94,16 +95,16 @@ export default function Contact() {
               <h3 className="text-lg font-bold text-gray-800 mb-4">Thời gian làm việc</h3>
               <div className="space-y-2 text-gray-600">
                 <div className="flex justify-between">
-                  <span>Thứ 2 - Thứ 6</span>
-                  <span>9:00 - 18:00</span>
+                  <span>{personalInfo.workingHours.weekdays.days}</span>
+                  <span>{personalInfo.workingHours.weekdays.hours}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Thứ 7</span>
-                  <span>9:00 - 12:00</span>
+                  <span>{personalInfo.workingHours.saturday.days}</span>
+                  <span>{personalInfo.workingHours.saturday.hours}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Chủ nhật</span>
-                  <span>Nghỉ</span>
+                  <span>{personalInfo.workingHours.sunday.days}</span>
+                  <span>{personalInfo.workingHours.sunday.hours}</span>
                 </div>
               </div>
             </div>

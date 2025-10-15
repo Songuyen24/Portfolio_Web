@@ -1,40 +1,48 @@
 export const personalInfo = {
   // Thông tin cơ bản
-  name: "Nguyễn Sơn",
+  name: "Nguyễn Phúc Sơn",
   title: "Full-Stack Developer",
   experience: "x năm kinh nghiệm",
   avatar: "/images/avatar.jpg",
-  
-  // Liên hệ
-  contact: {
-    email: "nguyenphucson93@gmail.com",
-    phone: "+84 123 456 789",
-    address: "Hồ Chí Minh, Việt Nam"
+  date: "27/03/2004",
+  phone: "+84 123 456 789",
+  address: "Hồ Chí Minh, Việt Nam",
+
+  //Học vấn
+  education: {
+    school: "Trường Đại học Công nghệ Thông tin - Hutech",
+    degree: "Cử nhân Công nghệ thông tin",
+    field: "Kỹ thuật phần mềm",
+    duration: "2022-2026",
+    gpa: "3.30/4.00"
   },
+  
   
   // Mạng xã hội
   social: {
+    email: "nguyenphucson93@gmail.com", 
     github: "https://github.com/Songuyen24",
     linkedin: "",
     facebook: "",
-    twitter: ""
+    twitter: "",
+    tiktok: "",
+    instagram: ""
   },
   
   // Giới thiệu
   bio: {
     short: "Xin chào! Tôi là Nguyễn Sơn, một lập trình viên đam mê công nghệ và phát triển web.",
     long: [
-      "Tôi là một lập trình viên full-stack với hơn x năm kinh nghiệm trong việc phát triển các ứng dụng web hiện đại. Tôi có đam mê mạnh mẽ với việc tạo ra những trải nghiệm người dùng tuyệt vời thông qua code sạch và thiết kế đẹp.",
-      "Chuyên môn của tôi tập trung vào React, Node.js và các công nghệ web hiện đại. Tôi luôn tìm kiếm cơ hội học hỏi và áp dụng những công nghệ mới để giải quyết các vấn đề phức tạp một cách sáng tạo.",
-      "Ngoài lập trình, tôi thích chia sẻ kiến thức thông qua blog cá nhân và tham gia vào các dự án open source. Mục tiêu của tôi là không ngừng phát triển kỹ năng và đóng góp tích cực cho cộng đồng lập trình viên."
+      "Lập trình viên full-stack với đam mê tạo ra những trải nghiệm người dùng tuyệt vời thông qua code sạch và thiết kế đẹp.",
+      "Chuyên về React, Spring Boot và các công nghệ web hiện đại. Luôn học hỏi và áp dụng công nghệ mới để giải quyết vấn đề một cách sáng tạo."
     ]
   },
   
   // Kỹ năng
   skills: {
-    frontend: ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3'],
-    backend: ['Node.js', 'Express', 'MongoDB', 'MySQL', 'API Design'],
-    tools: ['Git', 'Docker', 'AWS', 'Figma', 'Photoshop']
+    frontend: ['React', 'JavaScript', 'Tailwind CSS', 'Vite'],
+    backend: ['Node.js', 'MySQL', 'API Design', 'PostGreSQL', 'Firebase', 'Spring Boot'],
+    tools: ['Git', 'Canva', 'Figma', 'Photoshop']
   },
   
   // Thời gian làm việc

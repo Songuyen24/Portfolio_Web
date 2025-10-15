@@ -1,0 +1,52 @@
+.chroma-grid {
+  position: relative;
+  overflow: hidden;
+}
+
+.chroma-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  background-image: 
+    linear-gradient(45deg, var(--color-1) 25%, transparent 25%), 
+    linear-gradient(-45deg, var(--color-2) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, var(--color-3) 75%), 
+    linear-gradient(-45deg, transparent 75%, var(--color-4) 75%);
+  background-size: var(--cell-size) var(--cell-size);
+  background-position: 
+    0 0, 
+    0 calc(var(--cell-size) / 2), 
+    calc(var(--cell-size) / 2) calc(-1 * var(--cell-size) / 2), 
+    calc(-1 * var(--cell-size) / 2) 0;
+  animation: chroma-shift 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes chroma-shift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(10px, 5px) rotate(1deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-5px, 10px) rotate(-0.5deg);
+    opacity: 0.08;
+  }
+  75% {
+    transform: translate(8px, -8px) rotate(0.8deg);
+    opacity: 0.12;
+  }
+}
+
+.chroma-grid:hover::before {
+  animation-duration: 5s;
+  opacity: 0.2;
+}

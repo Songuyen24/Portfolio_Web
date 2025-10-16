@@ -101,15 +101,14 @@ const Home = () => {
                     speed={3}
                   />
                 </h2>
-                <p className="text-xl text-gray-200 mb-6">Tìm hiểu thêm về hành trình và đam mê của tôi</p>
                 
-                <p className="text-xl text-gray-200 mb-6 leading-relaxed">
+                <p className="text-lg text-gray-200 mb-6 leading-relaxed">
                   Tôi là một Java Developer với niềm đam mê mãnh liệt về công nghệ và lập trình. 
                   Với hơn 3 năm kinh nghiệm trong việc phát triển ứng dụng web và mobile, 
                   tôi luôn tìm tòi và học hỏi những công nghệ mới nhất để tạo ra những sản phẩm chất lượng.
                 </p>
                 
-                <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                <p className="text-lg text-gray-200 mb-8 leading-relaxed">
                   Tôi tin rằng công nghệ không chỉ là công cụ mà còn là cầu nối để tạo ra những giải pháp 
                   thông minh và hiệu quả. Từ việc xây dựng API backend với Spring Boot đến phát triển 
                   giao diện người dùng tương tác với React, tôi luôn cố gắng mang đến trải nghiệm tốt nhất 
@@ -123,7 +122,7 @@ const Home = () => {
                     <h4 className="text-3xl font-bold text-white mb-1">
                       x<span className="text-cyan-400">+</span>
                     </h4>
-                    <p className="text-cyan-400 font-medium text-sm">Dự án hoàn thành</p>
+                    <p className="text-gray-300 font-medium text-sm">Dự án hoàn thành</p>
                   </div>
                   <div className="text-center">
                     <h4 className="text-3xl font-bold text-white mb-1">
@@ -139,7 +138,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                <p className="text-gray-400 text-sm italic">
+                <p className="text-lg text-gray-400 text-sm italic">
                   Working with heart, creating with mind.
                 </p>
               </div>

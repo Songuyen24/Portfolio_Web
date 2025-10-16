@@ -5,7 +5,7 @@ import '../../assets/styles/BlogPost.css';
 
 const JavaIntroPost = () => {
   return (
-    <div className="blog-post">
+    <div className="blog-post" style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 50%, #0c0a09 100%)', minHeight: '100vh' }}>
       <div className="blog-header">
         <h1 className="blog-title">
           ☕ Java là gì? Vì sao nó vẫn phổ biến sau hơn 25 năm?

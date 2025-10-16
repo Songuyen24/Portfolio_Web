@@ -3,7 +3,7 @@ export const projects = [
     id: 0,
     title: "Portfolio website",
     description: "Website portfolio cá nhân được xây dựng bằng React và Spring Boot, với giao diện hiện đại và tích hợp Aurora background.",
-    image: "/images/project_shots/temp.jpg",
+    image: "/images/project_shots/portfolio.png",
     technologies: ["React","JavaScript"],
     githubLink: "https://github.com/Songuyen24/Portfolio_Web",
     liveLink: "#",

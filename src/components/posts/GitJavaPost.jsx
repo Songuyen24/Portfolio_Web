@@ -8,7 +8,7 @@ const GitJavaPost = () => {
     <div className="blog-post">
       <div className="blog-header">
         <h1 className="blog-title">
-          🔧 Git cơ bản cho lập trình viên Java - Hướng dẫn từ A-Z
+           Git cơ bản cho lập trình viên Java - Hướng dẫn từ A-Z
         </h1>
         
         <div className="blog-meta">

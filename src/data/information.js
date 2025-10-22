@@ -3,7 +3,7 @@ export const personalInfo = {
   name: "Nguyễn Phúc Sơn",
   title: "Full-Stack Developer",
   experience: "x năm kinh nghiệm",
-  avatar: "/images/avatar.jpg",
+  avatar: `${process.env.PUBLIC_URL}/images/avatar.jpg`,
   date: "27/03/2004",
   phone: "+84 123 456 789",
   address: "Hồ Chí Minh, Việt Nam",

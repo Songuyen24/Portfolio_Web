@@ -252,10 +252,10 @@ export default function About() {
               </div>
               
               <div className="space-y-6">
-                <div className={`flex items-start ${"/images/hutech.png" ? "gap-4" : ""} pl-6`}>
-                  {"/images/hutech.png" && (
+                <div className={`flex items-start ${`${process.env.PUBLIC_URL}/images/hutech.png` ? "gap-4" : ""} pl-6`}>
+                  {`${process.env.PUBLIC_URL}/images/hutech.png` && (
                     <img
-                      src="/images/hutech.png"
+                      src={`${process.env.PUBLIC_URL}/images/hutech.png`}
                       alt="Hutech Logo"
                       className="w-16 h-16 rounded-lg object-cover border border-cyan-500/30 bg-white/10 p-2"
                     />

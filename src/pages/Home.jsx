@@ -73,7 +73,7 @@ const Home = () => {
               <div className="relative">
                 <div className="w-80 h-80 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden border-4 border-white">
                   <img 
-                    src="/images/avatar.jpg" 
+                    src={`${process.env.PUBLIC_URL}/images/avatar.jpg`}
                     alt="S" 
                     className="w-full h-full object-cover"
                   />
@@ -148,7 +148,7 @@ const Home = () => {
                 <div className="relative">
                   <div className="w-64 h-80 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/20 overflow-hidden">
                     <img 
-                      src="/images/avatar.jpg" 
+                      src={`${process.env.PUBLIC_URL}/images/avatar.jpg`}
                       alt="Nguyễn Phúc Sơn" 
                       className="w-full h-full object-cover"
                     />

@@ -20,7 +20,7 @@ import {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/Portfolio_Web">
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
         {/* Global Aurora Background */}
         <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">

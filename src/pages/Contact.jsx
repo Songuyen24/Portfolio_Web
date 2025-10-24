@@ -8,7 +8,6 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,10 +43,6 @@ export default function Contact() {
       newErrors.email = 'Email không hợp lệ';
     }
     
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Vui lòng nhập chủ đề';
-    }
-    
     if (!formData.message.trim()) {
       newErrors.message = 'Vui lòng nhập nội dung tin nhắn';
     } else if (formData.message.trim().length < 10) {
@@ -68,22 +63,36 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+      // Send form data to Formspree
+      const response = await fetch('https://formspree.io/f/xovkgyre', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
       });
       
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 5000);
+      if (response.ok) {
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+        
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
       
     } catch (error) {
       console.error('Error submitting form:', error);
+      alert('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau.');
     } finally {
       setIsSubmitting(false);
     }
@@ -324,31 +333,6 @@ export default function Contact() {
                       </p>
                     )}
                   </div>
-                </div>
-
-                {/* Subject Input */}
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-200 mb-2">
-                    Chủ đề *
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    required
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-3 border ${
-                      errors.subject ? 'border-red-500 bg-red-50/10' : 'border-gray-300'
-                    } rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all duration-200 hover:border-cyan-400 bg-white/5 backdrop-blur-sm`}
-                    placeholder="Nhập chủ đề tin nhắn"
-                  />
-                  {errors.subject && (
-                    <p className="mt-1 text-sm text-red-400 animate-pulse flex items-center">
-                      <span className="w-1 h-1 bg-red-400 rounded-full mr-2"></span>
-                      {errors.subject}
-                    </p>
-                  )}
                 </div>
 
                 {/* Message Input */}

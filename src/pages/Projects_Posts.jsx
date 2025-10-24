@@ -1,12 +1,42 @@
 import { Link } from "react-router-dom";
 import { posts } from "../data/posts";
 import { projects } from "../data/projects";
-import { FiClock, FiCalendar, FiTag, FiFolder, FiArrowRight, FiGithub } from "react-icons/fi";
+import { FiClock, FiCalendar, FiTag, FiFolder, FiArrowRight, FiGithub, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { useState } from "react";
 
 export default function Posts() {
   const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
   // Tìm bài viết nổi bật (featured post) hoặc lấy bài mới nhất
   const featuredPost = posts.find(post => post.featured) || sortedPosts[0];
+  
+  // Carousel state cho projects
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const featuredProjects = projects.filter(project => project.featured);
+  const projectsPerPage = 3;
+  const maxIndex = Math.max(0, featuredProjects.length - projectsPerPage);
+  
+  // State cho GitHub popup
+  const [showGithubPopup, setShowGithubPopup] = useState(null);
+
+  const handlePrevious = () => {
+    setCurrentIndex(prev => {
+      if (prev === 0) {
+        // Khi ở đầu, quay về cuối
+        return maxIndex;
+      }
+      return prev - 1;
+    });
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(prev => {
+      if (prev >= maxIndex) {
+        // Khi ở cuối, quay về đầu
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
 
   return (
     <div className="min-h-screen py-12 relative">
@@ -31,17 +61,48 @@ export default function Posts() {
 
         {/* Projects Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
-            <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
-              <FiFolder className="w-4 h-4 text-white" />
-            </div>
-            Dự án của tôi
-          </h2>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-white flex items-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                <FiFolder className="w-4 h-4 text-white" />
+              </div>
+              Dự án của tôi
+            </h2>
+            
+            {/* Navigation Arrows */}
+            {featuredProjects.length > projectsPerPage && (
+              <div className="flex gap-2">
+                <button
+                  onClick={handlePrevious}
+                  className="p-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  aria-label="Previous projects"
+                >
+                  <FiChevronLeft className="w-5 h-5 text-white" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="p-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  aria-label="Next projects"
+                >
+                  <FiChevronRight className="w-5 h-5 text-white" />
+                </button>
+              </div>
+            )}
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.filter(project => project.featured).map((project) => {
-              return (
-                <div key={project.id} className="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 hover:bg-white/15 transition-all duration-300 group">
+          <div className="relative overflow-hidden">
+            <div 
+              className="grid transition-transform duration-500 ease-in-out"
+              style={{ 
+                gridTemplateColumns: `repeat(${featuredProjects.length}, calc((100% - 4rem) / ${projectsPerPage}))`,
+                gap: '2rem',
+                transform: `translateX(calc(${currentIndex} * (-1 * ( (100% - 4rem) / ${projectsPerPage} + 2rem ))))`
+              }}>
+              {featuredProjects.map((project) => (
+                <div 
+                  key={project.id} 
+                  className="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 hover:bg-white/15 transition-all duration-300 group"
+                >
                   <div className="mb-4">
                     <div className="w-full h-48 overflow-hidden mb-4">
                       <img 
@@ -51,8 +112,8 @@ export default function Posts() {
                       />
                     </div>
                     <div className="px-6">
-                      <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-300 text-sm mb-4">
+                      <h3 className="text-xl font-semibold text-white mb-2 min-h-[3.5rem] leading-tight">{project.title}</h3>
+                      <p className="text-gray-300 text-sm mb-4 line-clamp-2">
                         {project.description}
                       </p>
                     </div>
@@ -101,18 +162,62 @@ export default function Posts() {
                         );
                       })}
                     </div>
-                    <div className="flex gap-2 pb-6">
-                      <a href={project.githubLink} className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                        <FiGithub className="w-5 h-5" />
-                      </a>
+                    <div className="flex gap-2 pb-6 relative">
+                      {/* GitHub Link(s) */}
+                      {Array.isArray(project.githubLink) ? (
+                        <div className="relative">
+                          <button 
+                            onClick={() => setShowGithubPopup(showGithubPopup === project.id ? null : project.id)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                          >
+                            <FiGithub className="w-5 h-5" />
+                          </button>
+                          
+                          {showGithubPopup === project.id && (
+                            <>
+                              <div 
+                                className="fixed inset-0 z-40" 
+                                onClick={() => setShowGithubPopup(null)}
+                              />
+                              <div className="absolute bottom-full left-0 mb-2 bg-gray-900/95 backdrop-blur-sm border border-white/20 rounded-lg shadow-xl p-3 min-w-[200px] z-50">
+                                <div className="flex flex-col gap-2">
+                                  {project.githubLink.map((link, idx) => (
+                                    <a
+                                      key={idx}
+                                      href={link}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/20 rounded text-cyan-400 hover:text-cyan-300 transition-colors text-sm"
+                                      onClick={() => setShowGithubPopup(null)}
+                                    >
+                                      <FiGithub className="w-4 h-4" />
+                                      <span>Repository {idx + 1}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ) : (
+                        <a 
+                          href={project.githubLink} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                        >
+                          <FiGithub className="w-5 h-5" />
+                        </a>
+                      )}
+                      
                       <a href={project.liveLink} className="text-cyan-400 hover:text-cyan-300 transition-colors">
                         <FiArrowRight className="w-5 h-5" />
                       </a>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
 

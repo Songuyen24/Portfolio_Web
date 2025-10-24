@@ -20,9 +20,9 @@ export const personalInfo = {
   
   // Mạng xã hội
   social: {
-    email: "nguyenphucson93@gmail.com", 
+    email: "npson2703@gmail.com", 
     github: "https://github.com/Songuyen24",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/sơn-nguyễn-2a18b225a",
     facebook: "",
     twitter: "",
     tiktok: "",
@@ -44,11 +44,64 @@ export const personalInfo = {
     backend: ['Node.js', 'MySQL', 'API Design', 'PostGreSQL', 'Firebase', 'Spring Boot'],
     tools: ['Git', 'Canva', 'Figma', 'Photoshop']
   },
-  
-  // Thời gian làm việc
-  workingHours: {
-    weekdays: { days: "Thứ 2 - Thứ 6", hours: "9:00 - 18:00" },
-    saturday: { days: "Thứ 7", hours: "9:00 - 12:00" },
-    sunday: { days: "Chủ nhật", hours: "Nghỉ" }
-  }
+
+  // Dự án học tập
+  experiences: [
+    {
+      id: 1,
+      position: "Lynk - Ứng dụng mạng xã hội",
+      company: "Dự án cá nhân",
+      duration: "2025",
+      logo: "",
+      responsibilities: [
+        "Phát triển ứng dụng di động với Flutter",
+        "Tích hợp Firebase cho authentication và real-time database",
+        "Xây dựng tính năng chat, đăng bài và tương tác xã hội",
+        "Quản lý state với Provider/Bloc pattern"
+      ],
+      color: "blue"
+    },
+    {
+      id: 2,
+      position: "Portfolio Website",
+      company: "Dự án cá nhân",
+      duration: "2025",
+      logo: "",
+      responsibilities: [
+        "Xây dựng website portfolio cá nhân với React",
+        "Thiết kế giao diện hiện đại với Tailwind CSS",
+        "Tối ưu hóa SEO và hiệu suất tải trang",
+        "Tích hợp blog và quản lý nội dung"
+      ],
+      color: "green"
+    },
+    {
+      id: 3,
+      position: "Dinenow - Website đặt bàn trực tuyến",
+      company: "Dự án nhóm",
+      duration: "2024",
+      logo: "",
+      responsibilities: [
+        "Phát triển backend với Spring Boot và PostgreSQL",
+        "Xây dựng giao diện người dùng với ReactJS",
+        "Tích hợp Redis để tối ưu hiệu suất",
+        "Quản lý đặt bàn và thanh toán trực tuyến"
+      ],
+      color: "orange"
+    },
+    {
+      id: 4,
+      position: "Eduquest - Hệ thống kiểm tra trực tuyến",
+      company: "Dự án nhóm",
+      duration: "2024",
+      logo: "",
+      responsibilities: [
+        "Phát triển ứng dụng di động với Flutter",
+        "Xây dựng web admin với ReactJS",
+        "Backend API với Spring Boot và Redis",
+        "Hệ thống làm bài thi và chấm điểm tự động"
+      ],
+      color: "yellow"
+    }
+  ],
 };

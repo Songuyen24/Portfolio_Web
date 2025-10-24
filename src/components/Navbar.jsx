@@ -33,9 +33,6 @@ export default function Navbar() {
             to="/" 
             className="text-xl lg:text-2xl font-bold text-white hover:text-cyan-300 transition-colors duration-200 flex items-center space-x-2"
           >
-            <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm lg:text-base shadow-lg">
-              NS
-            </div>
             <span className="hidden sm:block">Nguyễn Phúc Sơn</span>
           </Link>
 

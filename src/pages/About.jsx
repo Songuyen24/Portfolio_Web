@@ -334,71 +334,31 @@ export default function About() {
               </div>
               
               <div className="space-y-6">
-                <div className={`flex items-start ${"" ? "gap-4" : ""} pl-6`}>
-                  {"" && (
-                    <img
-                      src=""
-                      alt="Company ABC Logo"
-                      className="w-16 h-16 rounded-lg object-cover border border-green-500/30 bg-white/10 p-2"
-                    />
-                  )}
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-white">Java Developer</h3>
-                      <span className="text-sm text-green-300 bg-green-500/20 px-2 py-1 rounded mt-1 sm:mt-0 self-start">2024 - Hiện tại</span>
+                {personalInfo.experiences.map((experience) => (
+                  <div key={experience.id} className={`flex items-start ${experience.logo ? "gap-4" : ""} pl-6`}>
+                    {experience.logo && (
+                      <img
+                        src={experience.logo}
+                        alt={`${experience.company} Logo`}
+                        className={`w-16 h-16 rounded-lg object-cover border border-${experience.color}-500/30 bg-white/10 p-2`}
+                      />
+                    )}
+                    <div className="flex-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 className="text-lg font-semibold text-white">{experience.position}</h3>
+                        <span className={`text-sm text-${experience.color}-300 bg-${experience.color}-500/20 px-2 py-1 rounded mt-1 sm:mt-0 self-start`}>
+                          {experience.duration}
+                        </span>
+                      </div>
+                      <p className={`text-${experience.color}-300 font-medium mb-2`}>{experience.company}</p>
+                      <ul className="text-gray-300 text-sm space-y-1">
+                        {experience.responsibilities.map((responsibility, index) => (
+                          <li key={index}>• {responsibility}</li>
+                        ))}
+                      </ul>
                     </div>
-                    <p className="text-green-300 font-medium mb-2">Công ty Công nghệ ABC</p>
-                    <ul className="text-gray-300 text-sm space-y-1">
-                      <li>• Phát triển ứng dụng web với Spring Boot và React</li>
-                      <li>• Thiết kế và tối ưu hóa cơ sở dữ liệu MySQL</li>
-                      <li>• Tích hợp API và xây dựng microservices</li>
-                    </ul>
                   </div>
-                </div>
-                
-                <div className={`flex items-start ${"" ? "gap-4" : ""} pl-6`}>
-                  {"" && (
-                    <img
-                      src=""
-                      alt="Company XYZ Logo"
-                      className="w-16 h-16 rounded-lg object-cover border border-orange-500/30 bg-white/10 p-2"
-                    />
-                  )}
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-white">Intern Full-stack Developer</h3>
-                      <span className="text-sm text-orange-300 bg-orange-500/20 px-2 py-1 rounded mt-1 sm:mt-0 self-start">2023 - 2024</span>
-                    </div>
-                    <p className="text-orange-300 font-medium mb-2">Công ty Phần mềm XYZ</p>
-                    <ul className="text-gray-300 text-sm space-y-1">
-                      <li>• Học tập và phát triển ứng dụng web với Java Spring</li>
-                      <li>• Tham gia xây dựng giao diện người dùng với React</li>
-                      <li>• Viết unit test và tối ưu hóa hiệu suất ứng dụng</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div className={`flex items-start ${"" ? "gap-4" : ""} pl-6`}>
-                  {"" && (
-                    <img
-                      src=""
-                      alt="Freelance Logo"
-                      className="w-16 h-16 rounded-lg object-cover border border-yellow-500/30 bg-white/10 p-2"
-                    />
-                  )}
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-white">Freelance Developer</h3>
-                      <span className="text-sm text-yellow-300 bg-yellow-500/20 px-2 py-1 rounded mt-1 sm:mt-0 self-start">2022 - 2023</span>
-                    </div>
-                    <p className="text-yellow-300 font-medium mb-2">Dự án cá nhân</p>
-                    <ul className="text-gray-300 text-sm space-y-1">
-                      <li>• Xây dựng website bán hàng cho khách hàng SME</li>
-                      <li>• Phát triển ứng dụng quản lý công việc</li>
-                      <li>• Tư vấn giải pháp công nghệ cho doanh nghiệp nhỏ</li>
-                    </ul>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

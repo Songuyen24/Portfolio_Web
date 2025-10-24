@@ -10,6 +10,9 @@ import { ShinyText, LogoLoop, Aurora } from '../components/reactbits';
 const Home = () => {
   const navigate = useNavigate();
   const latestPosts = posts.slice(0, 3);
+  
+  // State cho GitHub popup
+  const [showGithubPopup, setShowGithubPopup] = React.useState(null);
 
   return (
     <>
@@ -30,12 +33,6 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-4 lg:px-6 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium mb-4">
-                  👋 Chào mừng đến với blog của tôi
-                </span>
-              </div>
-              
               <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Xin chào, tôi là{' '}
                 <ShinyText 
@@ -52,7 +49,7 @@ const Home = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a
-                  href="/cv/NguyenPhucSon_CV.pdf"
+                  href={`${process.env.PUBLIC_URL}/cv.pdf`}
                   download="NguyenPhucSon_CV.pdf"
                   className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium rounded-lg hover:from-cyan-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
@@ -77,9 +74,6 @@ const Home = () => {
                     alt="S" 
                     className="w-full h-full object-cover"
                   />
-                </div>
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center text-2xl animate-bounce shadow-lg">
-                  ☕
                 </div>
               </div>
             </div>
@@ -120,13 +114,13 @@ const Home = () => {
                 <div className="grid grid-cols-3 gap-6 mb-8">
                   <div className="text-center">
                     <h4 className="text-3xl font-bold text-white mb-1">
-                      x<span className="text-cyan-400">+</span>
+                      3<span className="text-cyan-400">+</span>
                     </h4>
                     <p className="text-gray-300 font-medium text-sm">Dự án hoàn thành</p>
                   </div>
                   <div className="text-center">
                     <h4 className="text-3xl font-bold text-white mb-1">
-                      x<span className="text-cyan-400">+</span>
+                      1<span className="text-cyan-400">+</span>
                     </h4>
                     <p className="text-gray-300 text-sm">Năm kinh nghiệm</p>
                   </div>
@@ -317,10 +311,54 @@ const Home = () => {
                         );
                       })}
                     </div>
-                    <div className="flex gap-2 pb-6">
-                      <a href={project.githubLink} className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                        <FiGithub className="w-5 h-5" />
-                      </a>
+                    <div className="flex gap-2 pb-6 relative">
+                      {/* GitHub Link(s) */}
+                      {Array.isArray(project.githubLink) ? (
+                        <div className="relative">
+                          <button 
+                            onClick={() => setShowGithubPopup(showGithubPopup === project.id ? null : project.id)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                          >
+                            <FiGithub className="w-5 h-5" />
+                          </button>
+                          
+                          {showGithubPopup === project.id && (
+                            <>
+                              <div 
+                                className="fixed inset-0 z-40" 
+                                onClick={() => setShowGithubPopup(null)}
+                              />
+                              <div className="absolute bottom-full left-0 mb-2 bg-gray-900/95 backdrop-blur-sm border border-white/20 rounded-lg shadow-xl p-3 min-w-[200px] z-50">
+                                <div className="flex flex-col gap-2">
+                                  {project.githubLink.map((link, idx) => (
+                                    <a
+                                      key={idx}
+                                      href={link}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/20 rounded text-cyan-400 hover:text-cyan-300 transition-colors text-sm"
+                                      onClick={() => setShowGithubPopup(null)}
+                                    >
+                                      <FiGithub className="w-4 h-4" />
+                                      <span>Repository {idx + 1}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ) : (
+                        <a 
+                          href={project.githubLink} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                        >
+                          <FiGithub className="w-5 h-5" />
+                        </a>
+                      )}
+                      
                       <a href={project.liveLink} className="text-cyan-400 hover:text-cyan-300 transition-colors">
                         <FiArrowRight className="w-5 h-5" />
                       </a>

@@ -18,7 +18,7 @@ const IntelliJIDEAPost = () => {
           </div>
           <div className="meta-item">
             <FiClock />
-            <span>20 phút đọc</span>
+            <span>8 phút đọc</span>
           </div>
           <div className="meta-item">
             <span>📂 Tools & IDE</span>
@@ -136,74 +136,30 @@ sudo snap install intellij-idea-ultimate --classic`}</code></pre>
 
         <h3>🧠 Smart Code Completion</h3>
 
-        <pre><code>{`// Type-based completion
+        <pre><code>{`// Gợi ý thông minh theo context
 List<String> names = new ArrayList<>();
-names.a|  // → suggests add(), addAll(), etc.
+names.a|  // → suggests add(), addAll()...
 
-// Chain completion
-"hello".substring(0, 2).toUpperCase()|  // → suggests String methods
-
-// Static member completion
-Collections.|  // → suggests all Collections static methods
-
-// Postfix completion
-names.for|  // → transforms to for-each loop
-if (condition.not|)  // → if (!condition)`}</code></pre>
+// Chain completion & Postfix
+"hello".substring(0, 2).toUpperCase()|
+names.for|  // → transforms to for-each loop`}</code></pre>
 
         <h3>🔧 Powerful Refactoring</h3>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Refactoring</th>
-              <th>Shortcut</th>
-              <th>Mô tả</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Rename</strong></td>
-              <td>Shift + F6</td>
-              <td>Đổi tên biến, method, class an toàn</td>
-            </tr>
-            <tr>
-              <td><strong>Extract Method</strong></td>
-              <td>Ctrl + Alt + M</td>
-              <td>Tách code thành method riêng</td>
-            </tr>
-            <tr>
-              <td><strong>Extract Variable</strong></td>
-              <td>Ctrl + Alt + V</td>
-              <td>Tạo biến từ expression</td>
-            </tr>
-            <tr>
-              <td><strong>Inline</strong></td>
-              <td>Ctrl + Alt + N</td>
-              <td>Inline variable/method</td>
-            </tr>
-            <tr>
-              <td><strong>Move</strong></td>
-              <td>F6</td>
-              <td>Di chuyển class/method</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul>
+          <li><strong>Rename</strong> (Shift + F6): Đổi tên an toàn</li>
+          <li><strong>Extract Method</strong> (Ctrl + Alt + M): Tách code thành method</li>
+          <li><strong>Extract Variable</strong> (Ctrl + Alt + V): Tạo biến từ expression</li>
+          <li><strong>Move</strong> (F6): Di chuyển class/method</li>
+        </ul>
 
         <h3>🐛 Advanced Debugging</h3>
 
-        <pre><code>{`// Conditional Breakpoints
-// Right-click breakpoint → Condition
-user.getAge() > 18 && user.isActive()
-
-// Expression Evaluation
-// Alt + F8 in debug mode
-user.getOrders().stream()
-    .filter(order -> order.getStatus() == OrderStatus.PENDING)
-    .count()
-
-// Drop Frame & Force Return
-// Navigate execution flow backward
-// Force method to return specific value`}</code></pre>
+        <ul>
+          <li><strong>Conditional Breakpoints</strong>: user.getAge() &gt; 18</li>
+          <li><strong>Expression Evaluation</strong>: Alt + F8 để test expressions</li>
+          <li><strong>Drop Frame</strong>: Navigate execution backward</li>
+        </ul>
 
         <div className="section-divider"></div>
 
@@ -211,42 +167,27 @@ user.getOrders().stream()
 
         <h3>🍃 Spring Boot Support</h3>
 
-        <div className="highlight-box success">
-          <h4>🚀 Spring Boot Features:</h4>
-          <ul>
-            <li><strong>Spring Initializr Integration</strong>: Tạo project từ IDE</li>
-            <li><strong>Auto-configuration hints</strong>: Gợi ý cấu hình</li>
-            <li><strong>Application Properties</strong>: Auto-completion</li>
-            <li><strong>Bean Navigation</strong>: Jump to bean definitions</li>
-            <li><strong>HTTP Client</strong>: Test REST endpoints</li>
-            <li><strong>Database Tools</strong>: Kết nối và query database</li>
-          </ul>
-        </div>
+        <ul>
+          <li><strong>Spring Initializr</strong>: Tạo project từ IDE</li>
+          <li><strong>Auto-completion</strong>: Properties, YAML config</li>
+          <li><strong>Bean Navigation</strong>: Jump to definitions</li>
+          <li><strong>HTTP Client</strong>: Test REST endpoints ngay trong IDE</li>
+          <li><strong>Database Tools</strong>: Connect và query database</li>
+        </ul>
 
-        <pre><code>{`// application.yml auto-completion
+        <pre><code>{`// application.yml với auto-completion
 server:
-  port: 8080  # IntelliJ suggests available properties
+  port: 8080
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver  # Auto-complete driver names
   jpa:
     hibernate:
-      ddl-auto: create-drop  # Suggests valid values
+      ddl-auto: create-drop
 
-// Dependency injection navigation
+// Navigate dependencies
 @Autowired
-private UserService userService;  // Ctrl+Click → jump to implementation`}</code></pre>
-
-        <h3>🗃️ Database Integration</h3>
-
-        <pre><code>{`-- SQL completion and validation
-SELECT u.name, COUNT(o.id) as order_count
-FROM users u
-LEFT JOIN orders o ON u.id = o.user_id  -- IntelliJ validates joins
-WHERE u.created_at > ?  -- Parameter completion
-GROUP BY u.name
-HAVING COUNT(o.id) > 5;  -- Syntax highlighting`}</code></pre>
+private UserService userService;  // Ctrl+Click to implementation`}</code></pre>
 
         <div className="section-divider"></div>
 
@@ -300,152 +241,21 @@ HAVING COUNT(o.id) > 5;  -- Syntax highlighting`}</code></pre>
 
         <h3>⌨️ Essential Shortcuts</h3>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Action</th>
-              <th>Windows/Linux</th>
-              <th>macOS</th>
-              <th>Mô tả</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Search Everywhere</strong></td>
-              <td>Double Shift</td>
-              <td>Double Shift</td>
-              <td>Tìm files, classes, symbols</td>
-            </tr>
-            <tr>
-              <td><strong>Go to Class</strong></td>
-              <td>Ctrl + N</td>
-              <td>Cmd + O</td>
-              <td>Mở class nhanh</td>
-            </tr>
-            <tr>
-              <td><strong>Go to File</strong></td>
-              <td>Ctrl + Shift + N</td>
-              <td>Cmd + Shift + O</td>
-              <td>Mở file nhanh</td>
-            </tr>
-            <tr>
-              <td><strong>Recent Files</strong></td>
-              <td>Ctrl + E</td>
-              <td>Cmd + E</td>
-              <td>Files đã mở gần đây</td>
-            </tr>
-            <tr>
-              <td><strong>Quick Fix</strong></td>
-              <td>Alt + Enter</td>
-              <td>Option + Enter</td>
-              <td>Sửa lỗi tự động</td>
-            </tr>
-            <tr>
-              <td><strong>Generate Code</strong></td>
-              <td>Alt + Insert</td>
-              <td>Cmd + N</td>
-              <td>Generate getter/setter, constructor...</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul>
+          <li><strong>Double Shift</strong>: Search Everywhere</li>
+          <li><strong>Ctrl + N</strong>: Go to Class</li>
+          <li><strong>Ctrl + Shift + N</strong>: Go to File</li>
+          <li><strong>Ctrl + E</strong>: Recent Files</li>
+          <li><strong>Alt + Enter</strong>: Quick Fix</li>
+          <li><strong>Alt + Insert</strong>: Generate Code</li>
+        </ul>
 
         <h3>🔍 Live Templates</h3>
 
-        <pre><code>{`// Built-in templates
-main + Tab  →  public static void main(String[] args) { }
+        <pre><code>{`main + Tab  →  public static void main(String[] args) { }
 sout + Tab  →  System.out.println();
 psvm + Tab  →  public static void main(String[] args) { }
-iter + Tab  →  for (Object o : collection) { }
-
-// Custom templates
-// Settings → Editor → Live Templates
-logger + Tab  →  private static final Logger log = LoggerFactory.getLogger($CLASS$.class);`}</code></pre>
-
-        <div className="highlight-box warning">
-          <h4>🎯 Workflow tối ưu:</h4>
-          
-          <h5>📊 1. Project Organization</h5>
-          <ul>
-            <li>Sử dụng <strong>Maven/Gradle</strong> cho dependency management</li>
-            <li>Configure <strong>Code Style</strong> consistent trong team</li>
-            <li>Setup <strong>Inspection Profiles</strong> cho code quality</li>
-            <li>Sử dụng <strong>TODO</strong> comments để track tasks</li>
-          </ul>
-
-          <h5>⚡ 2. Development Speed</h5>
-          <ul>
-            <li>Master <strong>keyboard shortcuts</strong></li>
-            <li>Customize <strong>toolbars và menus</strong></li>
-            <li>Sử dụng <strong>bookmarks</strong> cho navigation</li>
-            <li>Setup <strong>external tools</strong> integration</li>
-          </ul>
-
-          <h5>🔍 3. Code Quality</h5>
-          <ul>
-            <li>Enable <strong>code inspections</strong></li>
-            <li>Sử dụng <strong>SonarLint</strong> plugin</li>
-            <li>Configure <strong>code coverage</strong> tools</li>
-            <li>Setup <strong>formatter</strong> và <strong>import optimizer</strong></li>
-          </ul>
-        </div>
-
-        <div className="section-divider"></div>
-
-        <h2>🚀 Advanced Features</h2>
-
-        <h3>🔬 Profiling & Performance</h3>
-
-        <pre><code>{`// JVM Debugger
-// Heap dump analysis
-// Memory leak detection
-// Thread monitoring
-
-// Performance Profiler (Ultimate)
-// CPU profiling
-// Memory profiling  
-// Allocation tracking`}</code></pre>
-
-        <h3>📊 Code Coverage</h3>
-
-        <pre><code>{`// Run with Coverage
-// Ctrl + Shift + F10 → Run with Coverage
-
-// Coverage Results
-- Line coverage: 85%
-- Branch coverage: 78% 
-- Method coverage: 92%
-
-// Export coverage reports
-- HTML report
-- XML report (for CI/CD)`}</code></pre>
-
-        <h3>🌐 HTTP Client</h3>
-
-        <pre><code>{`### Test REST API directly in IDE
-
-GET http://localhost:8080/api/users
-Accept: application/json
-Authorization: Bearer {{token}}
-
-###
-
-POST http://localhost:8080/api/users
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-
-###
-
-PUT http://localhost:8080/api/users/1
-Content-Type: application/json
-
-{
-  "name": "Jane Doe",
-  "email": "jane@example.com"
-}`}</code></pre>
+iter + Tab  →  for (Object o : collection) { }`}</code></pre>
 
         <div className="section-divider"></div>
 
